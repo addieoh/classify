@@ -1,4 +1,9 @@
 const fetch = require('node-fetch');
+const NewsAPI = require('newsapi');
+
+const newsAPI = new NewsAPI('9177944aaadd48738ce2704a464370ba');
+
+const newsUrl = newsAPI.v2.everything({ q: 'donald trump' }).then(response => { console.log(response['articles'][0]['url']) });
 
 // function parsePage(sendResponse) {
 // 	distinctSortedElements = []
@@ -48,11 +53,11 @@ function sendParseRequest(articleText, articleURL) {
 	.then(response => response.text())
 	.then(function(body) {
 		let responseObj = JSON.parse(body);
-		console.log(responseObj)
+		console.log(responseObj['overall_result'])
 	})
 	.catch(function(err) {
 		console.log('fetch error: ', err); //or err.message
 	});
 }
 
-console.log(sendParseRequest(["President Trump has followed through on his earlier threat to declare a national emergency over border security, and use executive authority to spend more than Congress has allowed on his so-called wall. This is an abuse of his office. Trump is letting the country down — and so are the Republicans in Congress who’ve said they’ll go along."], 'https://www.bloomberg.com/opinion/articles/2019-02-16/trump-national-emergency-is-an-affront-to-constitution'));
+sendParseRequest(["President Trump has followed through on his earlier threat to declare a national emergency over border security, and use executive authority to spend more than Congress has allowed on his so-called wall. This is an abuse of his office. Trump is letting the country down — and so are the Republicans in Congress who’ve said they’ll go along."], 'https://www.bloomberg.com/opinion/articles/2019-02-16/trump-national-emergency-is-an-affront-to-constitution');
