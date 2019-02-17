@@ -1,3 +1,5 @@
+import fetchStuff from 'fetch';
+
 document.querySelector("#mainButton").addEventListener("click", function() {
   const userQuery = document.getElementById("userInput").value;
 
@@ -30,6 +32,7 @@ function loadGraph(userQuery) {
   // Uncomment below when you get functionality working. Function header at bottom.
   // queryData = getData(query);
 
+  console.log('Testing stuff', fetchStuff);
   var data = [
     {
       x: [
@@ -56,5 +59,7 @@ function loadGraph(userQuery) {
 async function getData(query) {
   // AJAX Request here;
 }
+
+console.log('hello')
 
 onLoad();
