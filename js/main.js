@@ -20,10 +20,12 @@ function getParameterByName(name, url) {
   return decodeURIComponent(results[2].replace(/\+/g, " "));
 }
 function onLoad() {
-  let query = getParameterByName("query");
+  const query = getParameterByName("query");
   document.getElementById("userInput").value = query;
+  let queryData;
 
-  //function to get/transform data;
+  // Uncomment below when you get functionality working. Function header at bottom.
+  // queryData = getData(query);
   var data = [
     {
       x: [
@@ -33,7 +35,7 @@ function onLoad() {
         "Right Leaning",
         "Conservative"
       ],
-      y: [10, 14, 20, 14, 23],
+      y: queryData ? queryData : [10, 14, 20, 14, 23],
       marker: {
         color: ["#00b4cc", "#00b4cc", "#00b4cc", "#00b4cc", "#00b4cc"]
       },
@@ -43,6 +45,11 @@ function onLoad() {
   ];
 
   Plotly.newPlot("chart", data, {}, { showSendToCloud: true });
+}
+
+// This needs to return an array of 5 numbers.
+async function getData(query) {
+  // AJAX Request here;
 }
 
 onLoad();
